@@ -93,8 +93,6 @@
       const foundItems = document.querySelectorAll('.find-list__link');
 
       if (value != '') {
-        // rewriteTable(value);
-
         foundItems.forEach(link => {
           if (link.innerText.search(value) == -1) {
             link.classList.add('hide');
@@ -197,7 +195,6 @@
     const tHead = createCrmTableHead();
     const tBody = createCrmTableBody();
 
-    // crmTable.append(tHead.crmTHead);
     crmTable.append(tHead);
     crmTable.append(tBody);
 
@@ -284,11 +281,6 @@
     crmThCreateDateBtnSort.setAttribute('data-type', 'create');
     crmThUpdateDateBtnSort.setAttribute('data-type', 'update');
 
-    // crmThID.setAttribute('data-type', 'id');
-    // crmThFIO.setAttribute('data-type', 'name');
-    // crmThCreateDate.setAttribute('data-type', 'create');
-    // crmThUpdateDate.setAttribute('data-type', 'update');
-
     crmThIDBtnSort.innerHTML = 'ID';
     crmThFIOBtnSort.innerHTML = 'Фамилия Имя Отчество';
     spanAZ.innerHTML = 'А-Я';
@@ -316,14 +308,6 @@
     crmTr.append(crmThAction);
     crmTHead.append(crmTr);
 
-    // return {
-    //   crmTHead,
-    //   crmThIDBtnSort,
-    //   crmThFIOBtnSort,
-    //   crmThCreateDateBtnSort,
-    //   crmThUpdateDateBtnSort
-    // }
-
     return crmTHead;
   }
 
@@ -336,7 +320,6 @@
 
   function sortCrmClients() {
     const table = document.querySelector('table')
-    // const headers = table.querySelectorAll('th');
     const headers = table.querySelectorAll('.table-sort');
     const tbody = table.querySelector('.table__tbody');
 
@@ -432,7 +415,6 @@
     createCrmBtnEdit.classList.add('btn-reset', 'btn', 'client__edit');
     createCrmBtnDelete.classList.add('btn-reset', 'btn', 'client__delete');
 
-
     const fullName = getFullName(data)
     function getFullName(data) {
       const name = data.name;
@@ -446,8 +428,7 @@
       createContactItemByType(contactIcon.type, contactIcon.value, createCrmContacts);
     }
 
-    createCrmClientID.textContent = data.id.substring(0, 6);
-    // createCrmClientID.textContent = Math.floor(Math.random() * 15);
+    createCrmClientID.textContent = data.id.substring(6);
     createCrmclientFIO.textContent = fullName;
     createCrmCreatedDate.textContent = getFormattedData(data.createdAt);
     createCrmCreatedTime.textContent = getFormattedTime(data.createdAt);
@@ -1220,11 +1201,6 @@
 
       console.log(clientObj)
 
-      // await createCrmClietns(clientObj);
-      // await sendCrmClietnsData(clientObj, 'POST');
-      // if (createValidateClientForm()) {
-      //   await sendCrmClietnsData(clientObj, 'POST');
-      // }
       await sendCrmClietnsData(clientObj, 'POST');
     });
 
@@ -1387,29 +1363,6 @@
       editModalContent
     }
   }
-
-  // async function createCrmClietns(client) {
-  //   const response = await fetch('http://localhost:3000/api/clients', {
-  //     method: 'POST',
-  //     body: JSON.stringify(client),
-  //   });
-  //   const result = await response.json();
-  // }
-
-  // async function getCrmClients() {
-  //   const response = await fetch('http://localhost:3000/api/clients', {
-  //     method: 'GET'
-  //   });
-  //   const result = await response.json();
-
-  //   return result;
-  // }
-
-  // async function deleteClientItem(id) {
-  //   const response = await fetch(`http://localhost:3000/api/clients/${id}`, {
-  //     method: 'DELETE',
-  //   });
-  // }
 
   async function sendCrmClietnsData(client, method, id = null) {
     try {
