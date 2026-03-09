@@ -61,12 +61,13 @@ module.exports = (env, argv) => {
       port: 8080,
       open: true,
       historyApiFallback: true,
-      proxy: {
-        '/api': {
+      proxy: [
+        {
+          context: ['/api'],
           target: 'http://localhost:3000',
           changeOrigin: true,
         },
-      },
+      ],
     },
   };
 };
